@@ -1,0 +1,366 @@
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment_1       |
+| assignment_3       |
+| assignment_5       |
+| bank_db            |
+| collage            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| studentdb          |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use assignment_5;
+Database changed
+
+ CREATE TABLE EMPLOYEETB (
+         EMPNO INT PRIMARY KEY,
+         FIRSTNAME VARCHAR(50),
+         LASTNAME VARCHAR(50),
+         ADDRESS VARCHAR(100),
+         CITY VARCHAR(50),
+         DATEOFBIRTH DATE,
+         DESIGNATION VARCHAR(50),
+         SALARY DECIMAL(10, 2),
+         DEPTNAME VARCHAR(50),
+         DATEOFJOINING DATE
+     );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc EMPLOYEETB;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| EMPNO         | int           | NO   | PRI | NULL    |       |
+| FIRSTNAME     | varchar(50)   | YES  |     | NULL    |       |
+| LASTNAME      | varchar(50)   | YES  |     | NULL    |       |
+| ADDRESS       | varchar(100)  | YES  |     | NULL    |       |
+| CITY          | varchar(50)   | YES  |     | NULL    |       |
+| DATEOFBIRTH   | date          | YES  |     | NULL    |       |
+| DESIGNATION   | varchar(50)   | YES  |     | NULL    |       |
+| SALARY        | decimal(10,2) | YES  |     | NULL    |       |
+| DEPTNAME      | varchar(50)   | YES  |     | NULL    |       |
+| DATEOFJOINING | date          | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+INSERT INTO employeetb (EMPNO, FIRSTNAME, LASTNAME, ADDRESS, CITY, DATEOFBIRTH, DESIGNATION, SALARY, DEPTNAME, DATEOFJOINING) VALUES
+    (1, 'vraj', 'panchal', '123 Main St', 'New York', '1990-05-15', 'Manager', 1000, 'Finance', '2015-07-01'),
+    (2, 'rahul', 'dusane', '456 Elm St', 'surat', '1985-10-20', 'Clerk', 50000, 'IT', '2018-03-15'),
+    (3, 'darsh', 'narola', '789 Oak St', 'surat', '1992-12-01', 'Analyst', 50000, 'Finance', '2017-09-10'),
+    (4, 'akshay', 'patel', '234 Pine St', 'Houston', '1988-07-08', 'Manager', 5000, 'HR', '2014-06-20'),
+    (5, 'mahek', 'patel', '567 Maple St', 'mumbai', '1991-03-25', 'ceo', 50000, 'IT', '2019-11-30'),
+    (6, 'jagdish', 'patil', '890 Cedar St', 'Boston', '1987-09-18', 'Analyst', 60000, 'Finance', '2016-02-05'),
+    (7, 'vats', 'patel', '123 Oak St', 'baroda', '1993-08-12', 'Manager', 75000, 'Sales', '2013-04-12'),
+    (8, 'dhruvi', 'patel', '456 Pine St', 'barodaa', '1990-01-30', 'Clerk', 5000, 'IT', '2004-01-15'),
+    (9, 'adarsh', 'patel', '789 Elm St', 'mumbai', '1989-06-05', 'ceo', 50000, 'Finance', '2015-10-18'),
+    (10, 'yes', 'patel', '234 Maple St', 'Austin', '1994-11-20', 'Manager', 80000, 'HR', '2000-01-01');
+
+
+
+mysql> select * from EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | vraj      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | rahul     | dusane   | 456 Elm St   | surat    | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | darsh     | narola   | 789 Oak St   | surat    | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | akshay    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | mahek     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | jagdish   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     7 | vats      | patel    | 123 Oak St   | baroda   | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     8 | dhruvi    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
+|     9 | adarsh    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | yes       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE SALARY >10000;
++-------+-----------+----------+--------------+--------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY   | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+--------+-------------+-------------+----------+----------+---------------+
+|     2 | rahul     | dusane   | 456 Elm St   | surat  | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | darsh     | narola   | 789 Oak St   | surat  | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     5 | mahek     | patel    | 567 Maple St | mumbai | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | jagdish   | patil    | 890 Cedar St | Boston | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     7 | vats      | patel    | 123 Oak St   | baroda | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     9 | adarsh    | patel    | 789 Elm St   | mumbai | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | yes       | patel    | 234 Maple St | Austin | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+--------+-------------+-------------+----------+----------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT SUM(SALARY) FROM EMPLOYEETB ;
++-------------+
+| SUM(SALARY) |
++-------------+
+|   426000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DEPTNAME, SUM(SALARY) AS TOTAL_SALARY FROM EMPLOYEETB GROUP BY DEPTNAME;
++----------+--------------+
+| DEPTNAME | TOTAL_SALARY |
++----------+--------------+
+| Finance  |    161000.00 |
+| IT       |    105000.00 |
+| HR       |     85000.00 |
+| Sales    |     75000.00 |
++----------+--------------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT MAX(SALARY) ,MIN(SALARY) ,AVG(SALARY) FROM EMPLOYEETB;
++-------------+-------------+--------------+
+| MAX(SALARY) | MIN(SALARY) | AVG(SALARY)  |
++-------------+-------------+--------------+
+|    80000.00 |     1000.00 | 42600.000000 |
++-------------+-------------+--------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT DEPTNAME , COUNT(*) FROM EMPLOYEETB GROUP BY DEPTNAME;
++----------+----------+
+| DEPTNAME | COUNT(*) |
++----------+----------+
+| Finance  |        4 |
+| IT       |        3 |
+| HR       |        2 |
+| Sales    |        1 |
++----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEETB SET FIRSTNAME = UPPER(FIRSTNAME);
+Query OK, 10 rows affected (0.01 sec)
+Rows matched: 10  Changed: 10  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | surat    | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St   | surat    | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | AKSHAY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     7 | VATS      | patel    | 123 Oak St   | baroda   | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
+|     9 | ADARSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE FIRSTNAME LIKE 'D%';
++-------+-----------+----------+-------------+---------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS     | CITY    | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+-------------+---------+-------------+-------------+----------+----------+---------------+
+|     3 | DARSH     | narola   | 789 Oak St  | surat   | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     8 | DHRUVI    | patel    | 456 Pine St | barodaa | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
++-------+-----------+----------+-------------+---------+-------------+-------------+----------+----------+---------------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE LASTNAME LIKE 'a%';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE FIRSTNAME LIKE 'AK%';
++-------+-----------+----------+-------------+---------+-------------+-------------+---------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS     | CITY    | DATEOFBIRTH | DESIGNATION | SALARY  | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+-------------+---------+-------------+-------------+---------+----------+---------------+
+|     4 | AKSHAY    | patel    | 234 Pine St | Houston | 1988-07-08  | Manager     | 5000.00 | HR       | 2014-06-20    |
++-------+-----------+----------+-------------+---------+-------------+-------------+---------+----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIRSTNAME, LENGTH(FIRSTNAME) AS NAME_LENGTH FROM EMPLOYEETB WHERE FIRSTNAME LIKE 'A%' OR FIRSTNAME LIKE 'M%';
++-----------+-------------+
+| FIRSTNAME | NAME_LENGTH |
++-----------+-------------+
+| AKSHAY    |           6 |
+| MAHEK     |           5 |
+| ADARSH    |           6 |
++-----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEETB SET FIRSTNAME = REPLACE(FIRSTNAME , 'A', 'W') WHERE FIRSTNAME LIKE 'A%';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT *FROM EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | surat    | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St   | surat    | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | WKSHWY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     7 | VATS      | patel    | 123 Oak St   | baroda   | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB ORDER BY LASTNAME DESC;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     4 | WKSHWY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     7 | VATS      | patel    | 123 Oak St   | baroda   | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     3 | DARSH     | narola   | 789 Oak St   | surat    | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | surat    | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE DATEOFJOINING BETWEEN '2000-01-01' AND '2010-01-01';
++-------+-----------+----------+--------------+---------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY    | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+---------+-------------+-------------+----------+----------+---------------+
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
+|    10 | YES       | patel    | 234 Maple St | Austin  | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+---------+-------------+-------------+----------+----------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE CITY='SURAT';
++-------+-----------+----------+------------+-------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS    | CITY  | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+------------+-------+-------------+-------------+----------+----------+---------------+
+|     2 | RAHUL     | dusane   | 456 Elm St | surat | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St | surat | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
++-------+-----------+----------+------------+-------+-------------+-------------+----------+----------+---------------+
+2 rows in set (0.00 sec)
+
+
+SELECT * FROM EMPLOYEETB WHERE CITY ='SURAT' OR CITY ='BARODA';+-------+-----------+----------+------------+--------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS    | CITY   | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+------------+--------+-------------+-------------+----------+----------+---------------+
+|     2 | RAHUL     | dusane   | 456 Elm St | surat  | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St | surat  | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     7 | VATS      | patel    | 123 Oak St | baroda | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
++-------+-----------+----------+------------+--------+-------------+-------------+----------+----------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB WHERE DEPTNAME ='FINANCE';
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     3 | DARSH     | narola   | 789 Oak St   | surat    | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+4 rows in set (0.00 sec)
+
+
+ SELECT DEPTNAME , MAX(SALARY) FROM EMPLOYEETB GROUP BY DEPTNAME;
++-------+-----------+----------+----------+----------+
+| EMPNO | FIRSTNAME | LASTNAME | SALARY   | DEPTNAME |
++-------+-----------+----------+----------+----------+
+|     6 | JAGDISH   | patil    | 60000.00 | Finance  |
+|    10 | YES       | patel    | 80000.00 | HR       |
+|     2 | RAHUL     | dusane   | 50000.00 | IT       |
+|     7 | VATS      | patel    | 75000.00 | Sales    |
++-------+-----------+----------+----------+----------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT COUNT(*) FROM EMPLOYEETB WHERE DEPTNAME ='IT';
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEETB SET CITY='MUMBAI' WHERE SALARY = 50000 AND CITY ='SURAT';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | MUMBAI   | 1985-10-20  | Clerk       | 50000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St   | MUMBAI   | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | WKSHWY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     7 | VATS      | patel    | 123 Oak St   | baroda   | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       |  5000.00 | IT       | 2004-01-15    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEETB SET SALARY = SALARY + 5000 WHERE DESIGNATION ='CLERK';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | MUMBAI   | 1985-10-20  | Clerk       | 55000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St   | MUMBAI   | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | WKSHWY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     7 | VATS      | patel    | 123 Oak St   | baroda   | 1993-08-12  | Manager     | 75000.00 | Sales    | 2013-04-12    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       | 10000.00 | IT       | 2004-01-15    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> DELETE FROM EMPLOYEETB WHERE CITY ='BARODA';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | MUMBAI   | 1985-10-20  | Clerk       | 55000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St   | MUMBAI   | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | WKSHWY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       | 10000.00 | IT       | 2004-01-15    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+9 rows in set (0.00 sec)
+
+mysql> DELETE  FROM EMPLOYEETB WHERE SALARY < 10000 AND DEPTNAME='IT';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEETB;
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+| EMPNO | FIRSTNAME | LASTNAME | ADDRESS      | CITY     | DATEOFBIRTH | DESIGNATION | SALARY   | DEPTNAME | DATEOFJOINING |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+|     1 | VRAJ      | panchal  | 123 Main St  | New York | 1990-05-15  | Manager     |  1000.00 | Finance  | 2015-07-01    |
+|     2 | RAHUL     | dusane   | 456 Elm St   | MUMBAI   | 1985-10-20  | Clerk       | 55000.00 | IT       | 2018-03-15    |
+|     3 | DARSH     | narola   | 789 Oak St   | MUMBAI   | 1992-12-01  | Analyst     | 50000.00 | Finance  | 2017-09-10    |
+|     4 | WKSHWY    | patel    | 234 Pine St  | Houston  | 1988-07-08  | Manager     |  5000.00 | HR       | 2014-06-20    |
+|     5 | MAHEK     | patel    | 567 Maple St | mumbai   | 1991-03-25  | ceo         | 50000.00 | IT       | 2019-11-30    |
+|     6 | JAGDISH   | patil    | 890 Cedar St | Boston   | 1987-09-18  | Analyst     | 60000.00 | Finance  | 2016-02-05    |
+|     8 | DHRUVI    | patel    | 456 Pine St  | barodaa  | 1990-01-30  | Clerk       | 10000.00 | IT       | 2004-01-15    |
+|     9 | WDWRSH    | patel    | 789 Elm St   | mumbai   | 1989-06-05  | ceo         | 50000.00 | Finance  | 2015-10-18    |
+|    10 | YES       | patel    | 234 Maple St | Austin   | 1994-11-20  | Manager     | 80000.00 | HR       | 2000-01-01    |
++-------+-----------+----------+--------------+----------+-------------+-------------+----------+----------+---------------+
+9 rows in set (0.00 sec)
+
+mysql>

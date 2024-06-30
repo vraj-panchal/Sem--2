@@ -1,0 +1,340 @@
+Microsoft Windows [Version 10.0.22631.3296]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\VRAJ PANCHAL>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment_1       |
+| assignment_3       |
+| assignment_5       |
+| bank_db            |
+| collage            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| studentdb          |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use studentDB;
+Database changed
+mysql> desc studentTB;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| rollno    | int         | NO   | PRI | NULL    |       |
+| studName  | varchar(15) | YES  |     | NULL    |       |
+| gender    | varchar(10) | YES  |     | NULL    |       |
+| address   | varchar(25) | YES  |     | NULL    |       |
+| city      | varchar(25) | YES  |     | NULL    |       |
+| dob       | date        | YES  |     | NULL    |       |
+| semester  | int         | YES  |     | NULL    |       |
+| mobileNo  | varchar(15) | YES  |     | NULL    |       |
+| email     | varchar(50) | YES  |     | NULL    |       |
+| feeAmount | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+INSERT INTO studentTB (rollno, studName, gender, address, city, dob, semester, mobileNo, email, feeAmount) VALUES
+(1, 'vraj', 'male', 'navagam', 'surat', '2006-01-11', 2, 545454, 'vraj@323', 50000),
+(2, 'rahul', 'male', 'navagam', 'surat', '2006-04-14', 2, 846444, 'rahul@155', 20000),
+(3, 'utsav', 'male', 'simada', 'surat', '2006-09-30', 4, 454, 'utsav@3fdsf', 40000),
+(4, 'vats', 'male', 'baroda', 'vadodhra', '2005-08-28', 2, 79854, 'vats@323', 20000),
+(5, 'prince', 'male', 'sunset', 'saputara', '2007-04-08', 4, 6454, 'prince@124', 40000),
+(6, 'mahek', 'female', 'kim', 'bharuch', '2006-02-16', 1, 4456, 'mahek@384', 10000),
+(7, 'riddhi', 'female', 'godhra', 'panchmahal', '2005-11-30', 1, 800, 'riddhi@384', 50000);
+
+
+mysql> select * From studentTB;
++--------+----------+--------+---------+------------+------------+----------+----------+-------------+-----------+
+| rollno | studName | gender | address | city       | dob        | semester | mobileNo | email       | feeAmount |
++--------+----------+--------+---------+------------+------------+----------+----------+-------------+-----------+
+|      1 | vraj     | male   | navagam | surat      | 2006-01-11 |        2 | 545454   | vraj@323    |     50000 |
+|      2 | rahul    | male   | navagam | surat      | 2006-04-14 |        2 | 846444   | rahul@155   |     20000 |
+|      3 | utsav    | male   | simada  | surat      | 2006-09-30 |        4 | 454      | utsav@3fdsf |     40000 |
+|      4 | vats     | male   | baroda  | vadodhra   | 2005-08-28 |        2 | 79854    | vats@323    |     20000 |
+|      5 | prince   | male   | sunset  | saputara   | 2007-04-08 |        4 | 6454     | prince@124  |     40000 |
+|      6 | mahek    | female | kim     | bharuch    | 2006-02-16 |        1 | 4456     | mahek@384   |     10000 |
+|      7 | riddhi   | female | godhra  | panchmahal | 2005-11-30 |        1 | 800      | riddhi@384  |     50000 |
++--------+----------+--------+---------+------------+------------+----------+----------+-------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> desc courseTB;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| courseID   | int         | NO   | PRI | NULL    |       |
+| courseName | varchar(50) | YES  |     | NULL    |       |
+| courseDesc | text        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+INSERT INTO courseTB (courseID, courseName, courseDesc) VALUES
+(201, 'English', 'Speaking'),
+(202, 'Maths', 'Theorem'),
+(203, 'c', 'Programming'),
+(204, 'DBMS', 'Database'),
+(205, 'practical', 'c/DBMS'),
+(206, 'SE', 'Cyber'),
+(207, 'Vac', 'History');
+
+
+mysql> select * From courseTB;
++----------+------------+------------+
+| courseID | courseName | courseDesc |
++----------+------------+------------+
+|      201 | English    | Speaking   |
+|      202 | Maths      | Theorom    |
+|      203 | c          | Programing |
+|      204 | DBMS       | Database   |
+|      205 | prectical  | c/DBMS     |
+|      206 | SE         | Cyber      |
+|      207 | Vac        | Histoty    |
++----------+------------+------------+
+7 rows in set (0.00 sec)
+
+INSERT INTO enrollmentTB (enrollID, rollno, courseID, EnrollmentYear) VALUES
+(220, 1, 201, 2001),
+(221, 2, 202, 2003),
+(222, 3, 203, 2005),
+(223, 4, 204, 2006),
+(224, 5, 205, 2007),
+(225, 6, 206, 2009),
+(226, 7, 207, 2010);
+
+
+mysql> desc enrollmentTB;
++----------------+------+------+-----+---------+-------+
+| Field          | Type | Null | Key | Default | Extra |
++----------------+------+------+-----+---------+-------+
+| enrollID       | int  | NO   | PRI | NULL    |       |
+| rollno         | int  | YES  | MUL | NULL    |       |
+| courseID       | int  | YES  | MUL | NULL    |       |
+| EnrollmentYear | int  | YES  |     | NULL    |       |
++----------------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> select * From enrollmentTB;
++----------+--------+----------+----------------+
+| enrollID | rollno | courseID | EnrollmentYear |
++----------+--------+----------+----------------+
+|      220 |      1 |      201 |           2001 |
+|      221 |      2 |      202 |           2003 |
+|      222 |      3 |      203 |           2005 |
+|      223 |      4 |      204 |           2006 |
+|      224 |      5 |      205 |           2007 |
+|      225 |      6 |      206 |           2009 |
+|      226 |      7 |      207 |           2010 |
++----------+--------+----------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> desc marksTB;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| markID | int        | NO   | PRI | NULL    |       |
+| rollno | int        | YES  | MUL | NULL    |       |
+| sub1   | int        | YES  |     | NULL    |       |
+| sub2   | int        | YES  |     | NULL    |       |
+| sub3   | int        | YES  |     | NULL    |       |
+| total  | int        | YES  |     | NULL    |       |
+| per    | int        | YES  |     | NULL    |       |
+| grade  | varchar(2) | YES  |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+INSERT INTO marksTB (markID, rollno, sub1, sub2, sub3, total, per, grade) VALUES
+(301, 1, 85, 90, 88, 263, 87, 'A'),
+(302, 2, 78, 85, 80, 243, 81, 'B'),
+(303, 3, 90, 92, 89, 271, 40, 'F'),
+(304, 4, 82, 88, 85, 255, 30, 'F'),
+(305, 5, 75, 80, 78, 233, 29, 'F'),
+(306, 6, 88, 85, 90, 263, 87, 'A'),
+(307, 7, 92, 94, 91, 277, 92, 'A');
+
+
+
+mysql> select * From marksTB;
++--------+--------+------+------+------+-------+------+-------+
+| markID | rollno | sub1 | sub2 | sub3 | total | per  | grade |
++--------+--------+------+------+------+-------+------+-------+
+|    301 |      1 |   85 |   90 |   88 |   263 |   87 | A     |
+|    302 |      2 |   78 |   85 |   80 |   243 |   81 | B     |
+|    303 |      3 |   90 |   92 |   89 |   271 |   40 | F     |
+|    304 |      4 |   82 |   88 |   85 |   255 |   30 | F     |
+|    305 |      5 |   75 |   80 |   78 |   233 |   29 | F     |
+|    306 |      6 |   88 |   85 |   90 |   263 |   87 | A     |
+|    307 |      7 |   92 |   94 |   91 |   277 |   92 | A     |
++--------+--------+------+------+------+-------+------+-------+
+7 rows in set (0.00 sec)
+
+
+mysql> select * from studentTB where semester = 4;
++--------+----------+--------+---------+----------+------------+----------+----------+-------------+-----------+
+| rollno | studName | gender | address | city     | dob        | semester | mobileNo | email       | feeAmount |
++--------+----------+--------+---------+----------+------------+----------+----------+-------------+-----------+
+|      3 | utsav    | male   | simada  | surat    | 2006-09-30 |        4 | 454      | utsav@3fdsf |     40000 |
+|      5 | prince   | male   | sunset  | saputara | 2007-04-08 |        4 | 6454     | prince@124  |     40000 |
++--------+----------+--------+---------+----------+------------+----------+----------+-------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select count(semester) from studentTB where semester = 4;
++-----------------+
+| count(semester) |
++-----------------+
+|               2 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from studentTB where semester = 2;
++--------+----------+--------+---------+----------+------------+----------+----------+-----------+-----------+
+| rollno | studName | gender | address | city     | dob        | semester | mobileNo | email     | feeAmount |
++--------+----------+--------+---------+----------+------------+----------+----------+-----------+-----------+
+|      1 | vraj     | male   | navagam | surat    | 2006-01-11 |        2 | 545454   | vraj@323  |     50000 |
+|      2 | rahul    | male   | navagam | surat    | 2006-04-14 |        2 | 846444   | rahul@155 |     20000 |
+|      4 | vats     | male   | baroda  | vadodhra | 2005-08-28 |        2 | 79854    | vats@323  |     20000 |
++--------+----------+--------+---------+----------+------------+----------+----------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+
+
+mysql> select *from studentTB order by rollno desc;
++--------+----------+--------+---------+------------+------------+----------+----------+-------------+-----------+
+| rollno | studName | gender | address | city       | dob        | semester | mobileNo | email       | feeAmount |
++--------+----------+--------+---------+------------+------------+----------+----------+-------------+-----------+
+|      7 | riddhi   | female | godhra  | panchmahal | 2005-11-30 |        1 | 800      | riddhi@384  |     50000 |
+|      6 | mahek    | female | kim     | bharuch    | 2006-02-16 |        1 | 4456     | mahek@384   |     10000 |
+|      5 | prince   | male   | sunset  | saputara   | 2007-04-08 |        4 | 6454     | prince@124  |     40000 |
+|      4 | vats     | male   | baroda  | vadodhra   | 2005-08-28 |        2 | 79854    | vats@323    |     20000 |
+|      3 | utsav    | male   | simada  | surat      | 2006-09-30 |        4 | 454      | utsav@3fdsf |     40000 |
+|      2 | rahul    | male   | navagam | surat      | 2006-04-14 |        2 | 846444   | rahul@155   |     20000 |
+|      1 | vraj     | male   | navagam | surat      | 2006-01-11 |        2 | 545454   | vraj@323    |     50000 |
++--------+----------+--------+---------+------------+------------+----------+----------+-------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT per, grade
+    -> FROM marksTB
+    -> JOIN studentTB  ON semester = semester where semester = 4;
++------+-------+
+| per  | grade |
++------+-------+
+|   87 | A     |
+|   87 | A     |
+|   81 | B     |
+|   81 | B     |
+|   40 | F     |
+|   40 | F     |
+|   30 | F     |
+|   30 | F     |
+|   29 | F     |
+|   29 | F     |
+|   87 | A     |
+|   87 | A     |
+|   92 | A     |
+|   92 | A     |
++------+-------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT per, grade
+    -> FROM marksTB
+    -> JOIN studentTB   where semester = 4;
++------+-------+
+| per  | grade |
++------+-------+
+|   87 | A     |
+|   87 | A     |
+|   81 | B     |
+|   81 | B     |
+|   40 | F     |
+|   40 | F     |
+|   30 | F     |
+|   30 | F     |
+|   29 | F     |
+|   29 | F     |
+|   87 | A     |
+|   87 | A     |
+|   92 | A     |
+|   92 | A     |
++------+-------+
+14 rows in set (0.00 sec)
+
+mysql> select count(gender) from studentTB where gender ='Female';
++---------------+
+| count(gender) |
++---------------+
+|             2 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(per) and sum(grade) from marksTB where grade='A';
++-------------------------+
+| sum(per) and sum(grade) |
++-------------------------+
+|                       0 |
++-------------------------+
+1 row in set, 3 warnings (0.00 sec)
+
+mysql> select total,per,grade from marksTB where grade ='A';
++-------+------+-------+
+| total | per  | grade |
++-------+------+-------+
+|   263 |   87 | A     |
+|   263 |   87 | A     |
+|   277 |   92 | A     |
++-------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select *from marksTB where grade ='F';
++--------+--------+------+------+------+-------+------+-------+
+| markID | rollno | sub1 | sub2 | sub3 | total | per  | grade |
++--------+--------+------+------+------+-------+------+-------+
+|    303 |      3 |   90 |   92 |   89 |   271 |   40 | F     |
+|    304 |      4 |   82 |   88 |   85 |   255 |   30 | F     |
+|    305 |      5 |   75 |   80 |   78 |   233 |   29 | F     |
++--------+--------+------+------+------+-------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select count(grade) from marksTB where grade ='F';
++--------------+
+| count(grade) |
++--------------+
+|            3 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select *from enrollmentTB where EnrollmentYear=2010;
++----------+--------+----------+----------------+
+| enrollID | rollno | courseID | EnrollmentYear |
++----------+--------+----------+----------------+
+|      226 |      7 |      207 |           2010 |
++----------+--------+----------+----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from studentTB where city = 'surat' and feeAmount=20000;
++--------+----------+--------+---------+-------+------------+----------+----------+-----------+-----------+
+| rollno | studName | gender | address | city  | dob        | semester | mobileNo | email     | feeAmount |
++--------+----------+--------+---------+-------+------------+----------+----------+-----------+-----------+
+|      2 | rahul    | male   | navagam | surat | 2006-04-14 |        2 | 846444   | rahul@155 |     20000 |
++--------+----------+--------+---------+-------+------------+----------+----------+-----------+-----------+
+1 row in set (0.00 sec)
+
+mysql>

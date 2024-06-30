@@ -1,0 +1,205 @@
+Microsoft Windows [Version 10.0.22631.3155]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\VRAJ PANCHAL>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment_1       |
+| bank_db            |
+| collage            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.02 sec)
+
+mysql> create database assignment_3;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use assignment_3;
+Database changed
+mysql> create table  FINETB(ROLLNO, STUDNAME, BOOKNAME,
+    -> create table  FINETB(ROLLNO, STUDNAME, BOOKNAME,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', STUDNAME, BOOKNAME,
+create table  FINETB(ROLLNO, STUDNAME, BOOKNAME,' at line 1
+mysql> create table  FINETB(ROLLNO int , STUDNAME varchar(30), BOOKNAME varchar(30), DATEOFISSUE date, DATEOFRETURN date, FINE int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc FINETB;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| ROLLNO       | int         | YES  |     | NULL    |       |
+| STUDNAME     | varchar(30) | YES  |     | NULL    |       |
+| BOOKNAME     | varchar(30) | YES  |     | NULL    |       |
+| DATEOFISSUE  | date        | YES  |     | NULL    |       |
+| DATEOFRETURN | date        | YES  |     | NULL    |       |
+| FINE         | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into FINETB (ROLLNO , STUDNAME , BOOKNAME , DATEOFISSUE , DATEOFRETURN , FINE ) value(1,'vraj','foc','2022-04-15','2022-04-29',150);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from FINEYB;
+ERROR 1146 (42S02): Table 'assignment_3.fineyb' doesn't exist
+mysql> select *from FINETB;
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      1 | vraj     | foc      | 2022-04-15  | 2022-04-29   |  150 |
++--------+----------+----------+-------------+--------------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into FINETB value(2,'utsav','c','2022-05-10','2022-05-24',250);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into FINETB value(3,'vats','maths','2022-06-11','2022-06-22',100);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into FINETB value(4,'rahul','dbms','2022-06-22','2022-07-11',300);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into FINETB value(5,'jemit','sec','2022-07-11','2022-07-23',50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into FINETB value(6,'jay','vac','2022-07-26','2022-08-01',200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into FINETB value(7,'yes','eng','2022-08-06','2022-08-12',400);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from FINETB;
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      1 | vraj     | foc      | 2022-04-15  | 2022-04-29   |  150 |
+|      2 | utsav    | c        | 2022-05-10  | 2022-05-24   |  250 |
+|      3 | vats     | maths    | 2022-06-11  | 2022-06-22   |  100 |
+|      4 | rahul    | dbms     | 2022-06-22  | 2022-07-11   |  300 |
+|      5 | jemit    | sec      | 2022-07-11  | 2022-07-23   |   50 |
+|      6 | jay      | vac      | 2022-07-26  | 2022-08-01   |  200 |
+|      7 | yes      | eng      | 2022-08-06  | 2022-08-12   |  400 |
++--------+----------+----------+-------------+--------------+------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM FINETB WHERE FINE>100;
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      1 | vraj     | foc      | 2022-04-15  | 2022-04-29   |  150 |
+|      2 | utsav    | c        | 2022-05-10  | 2022-05-24   |  250 |
+|      4 | rahul    | dbms     | 2022-06-22  | 2022-07-11   |  300 |
+|      6 | jay      | vac      | 2022-07-26  | 2022-08-01   |  200 |
+|      7 | yes      | eng      | 2022-08-06  | 2022-08-12   |  400 |
++--------+----------+----------+-------------+--------------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into FINETB value(7,'AAKASH','C++','2022-09-06','2022-09-12',40);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM FINETB WHERE STUDENTNAME='AAKASH' AND ROLLNO!=6;
+ERROR 1054 (42S22): Unknown column 'STUDENTNAME' in 'where clause'
+mysql> SELECT * FROM FINETB WHERE STUDNAME='AAKASH' AND ROLLNO!=6;
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      7 | AAKASH   | C++      | 2022-09-06  | 2022-09-12   |   40 |
++--------+----------+----------+-------------+--------------+------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT *FROM FINETB WHERE FINE BETWEEN 100 AND 250 ORDER BY FINE DESC;
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      2 | utsav    | c        | 2022-05-10  | 2022-05-24   |  250 |
+|      6 | jay      | vac      | 2022-07-26  | 2022-08-01   |  200 |
+|      1 | vraj     | foc      | 2022-04-15  | 2022-04-29   |  150 |
+|      3 | vats     | maths    | 2022-06-11  | 2022-06-22   |  100 |
++--------+----------+----------+-------------+--------------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into FINETB value(8,'KRISH','C#','2022-10-06','2022-10-12',50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM FINETB WHERE STUDNAME LIKE 'K%';
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      8 | KRISH    | C#       | 2022-10-06  | 2022-10-12   |   50 |
++--------+----------+----------+-------------+--------------+------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SUM(FINE) FROM FINETB;
++-----------+
+| SUM(FINE) |
++-----------+
+|      1540 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MAX(FINE),MIN(FINE),AVG(FINE) FROM FINETB;
++-----------+-----------+-----------+
+| MAX(FINE) | MIN(FINE) | AVG(FINE) |
++-----------+-----------+-----------+
+|       400 |        40 |  171.1111 |
++-----------+-----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(FINE) FROM FIREYB;
+ERROR 1146 (42S02): Table 'assignment_3.fireyb' doesn't exist
+mysql> SELECT COUNT(FINE) FROM FINEYB;
+ERROR 1146 (42S02): Table 'assignment_3.fineyb' doesn't exist
+mysql> SELECT COUNT(FINE) FROM FINETB;
++-------------+
+| COUNT(FINE) |
++-------------+
+|           9 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATEDIFF(DATEOFRETURN AND DATEOFISSUE) FROM FINETB;
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'DATEDIFF'
+mysql> SELECT DATEDIFF(DATEOFRETURN , DATEOFISSUE) FROM FINETB;
++--------------------------------------+
+| DATEDIFF(DATEOFRETURN , DATEOFISSUE) |
++--------------------------------------+
+|                                   14 |
+|                                   14 |
+|                                   11 |
+|                                   19 |
+|                                   12 |
+|                                    6 |
+|                                    6 |
+|                                    6 |
+|                                    6 |
++--------------------------------------+
+9 rows in set (0.01 sec)
+
+mysql> SELECT *FROM FINETB WHERE DATEOFISSUE='2022-04-15';
++--------+----------+----------+-------------+--------------+------+
+| ROLLNO | STUDNAME | BOOKNAME | DATEOFISSUE | DATEOFRETURN | FINE |
++--------+----------+----------+-------------+--------------+------+
+|      1 | vraj     | foc      | 2022-04-15  | 2022-04-29   |  150 |
++--------+----------+----------+-------------+--------------+------+
+1 row in set (0.01 sec)
+
+mysql>

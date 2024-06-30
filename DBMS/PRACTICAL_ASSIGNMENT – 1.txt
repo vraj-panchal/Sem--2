@@ -1,0 +1,408 @@
+mysql -u root -p
+
+show databeses;
+
+create database assignment_1;
+
+ show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment_1       |
+| collage            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+use assignment_1;
+
+QUE-1))--
+
+create table EMPLOYEE_TBL(
+	Emp_NO int ,
+	First_Name varchar(30) ,
+	Last_Name varchar(30) ,
+	Address varchar(50) ,
+	City varchar(15) ,
+	Dat_OF_Birth int ,
+	Gender varchar(10) ,
+	Designation varchar(30) ,
+	Salary int ,
+	Mobile_NO bigint ,
+	Dept_Name varchar(30) ,
+	Date_OF_Joining int );
+
+
+ desc EMPLOYEE_TBL;
+
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| Emp_NO          | int         | YES  |     | NULL    |       |
+| First_Name      | varchar(30) | YES  |     | NULL    |       |
+| Last_Name       | varchar(30) | YES  |     | NULL    |       |
+| Address         | varchar(50) | YES  |     | NULL    |       |
+| City            | varchar(15) | YES  |     | NULL    |       |
+| Dat_OF_Birth    | int         | YES  |     | NULL    |       |
+| Gender          | varchar(10) | YES  |     | NULL    |       |
+| Designation     | varchar(30) | YES  |     | NULL    |       |
+| Salary          | int         | YES  |     | NULL    |       |
+| Mobile_NO       | bigint      | YES  |     | NULL    |       |
+| Dept_Name       | varchar(30) | YES  |     | NULL    |       |
+| Date_OF_Joining | int         | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+12 rows in set (0.01 sec)
+
+
+	alter table EMPLOYEE_TBL
+	add primary key(Emp_NO);
+
+
+ desc EMPLOYEE_TBL;
+
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| Emp_NO          | int         | NO   | PRI | NULL    |       |
+| First_Name      | varchar(30) | YES  |     | NULL    |       |
+| Last_Name       | varchar(30) | YES  |     | NULL    |       |
+| Address         | varchar(50) | YES  |     | NULL    |       |
+| City            | varchar(15) | YES  |     | NULL    |       |
+| Dat_OF_Birth    | int         | YES  |     | NULL    |       |
+| Gender          | varchar(10) | YES  |     | NULL    |       |
+| Designation     | varchar(30) | YES  |     | NULL    |       |
+| Salary          | int         | YES  |     | NULL    |       |
+| Mobile_NO       | bigint      | YES  |     | NULL    |       |
+| Dept_Name       | varchar(30) | YES  |     | NULL    |       |
+| Date_OF_Joining | int         | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+12 rows in set (0.00 sec)
+
+	alter table EMPLOYEE_TBL
+	modify column City varchar(255) NOT NULL;
+	
+
+desc EMPLOYEE_TBL;
+
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| Emp_NO          | int          | NO   | PRI | NULL    |       |
+| First_Name      | varchar(30)  | YES  |     | NULL    |       |
+| Last_Name       | varchar(30)  | YES  |     | NULL    |       |
+| Address         | varchar(50)  | YES  |     | NULL    |       |
+| City            | varchar(255) | NO   |     | NULL    |       |
+| Dat_OF_Birth    | int          | YES  |     | NULL    |       |
+| Gender          | varchar(10)  | YES  |     | NULL    |       |
+| Designation     | varchar(30)  | YES  |     | NULL    |       |
+| Salary          | int          | YES  |     | NULL    |       |
+| Mobile_NO       | bigint       | YES  |     | NULL    |       |
+| Dept_Name       | varchar(30)  | YES  |     | NULL    |       |
+| Date_OF_Joining | int          | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+12 rows in set (0.00 sec)
+
+
+
+
+QUE-2))--
+
+
+
+
+create table STUDENT_TBL(
+	Roll_NO int ,
+	First_Name varchar(30) ,
+	Last_Name varchar(30) ,
+	City varchar(10) ,
+	Date_OF_Birth int ,
+	Gender varchar(10) ,
+	Blood varchar(10) ,
+	'Group' varchar(20)
+);
+
+
+desc STUDENT_TBL;
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Roll_NO       | int         | YES  |     | NULL    |       |
+| First_Name    | varchar(30) | YES  |     | NULL    |       |
+| Last_Name     | varchar(30) | YES  |     | NULL    |       |
+| City          | varchar(10) | YES  |     | NULL    |       |
+| Date_OF_Birth | int         | YES  |     | NULL    |       |
+| Gender        | varchar(10) | YES  |     | NULL    |       |
+| Blood         | varchar(10) | YES  |     | NULL    |       |
+| Group         | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+	alter table STUDENT_TBL
+	add primary key(City);
+
+
+desc STUDENT_TBL;
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Roll_NO       | int         | YES  |     | NULL    |       |
+| First_Name    | varchar(30) | YES  |     | NULL    |       |
+| Last_Name     | varchar(30) | YES  |     | NULL    |       |
+| City          | varchar(10) | NO   | PRI | NULL    |       |
+| Date_OF_Birth | int         | YES  |     | NULL    |       |
+| Gender        | varchar(10) | YES  |     | NULL    |       |
+| Blood         | varchar(10) | YES  |     | NULL    |       |
+| Group         | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+	alter table STUDENT_TBL
+	modify column Blood varchar(255) NOT NULL;
+
+
+desc STUDENT_TBL;
+
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| Roll_NO       | int          | YES  |     | NULL    |       |
+| First_Name    | varchar(30)  | YES  |     | NULL    |       |
+| Last_Name     | varchar(30)  | YES  |     | NULL    |       |
+| City          | varchar(10)  | NO   | PRI | NULL    |       |
+| Date_OF_Birth | int          | YES  |     | NULL    |       |
+| Gender        | varchar(10)  | YES  |     | NULL    |       |
+| Blood         | varchar(255) | NO   |     | NULL    |       |
+| Group         | varchar(20)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+QUE-3))--
+
+
+
+
+create table MARKS_TBL(
+	Marks_ID int ,
+	Student_ID int ,
+	Subject_1 varchar(15) ,
+	Subject_2 varchar(15) ,
+	Subject_3 varchar(15),
+	Total int );
+
+
+
+desc MARKS_TBL;
+
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Marks_ID   | int         | YES  |     | NULL    |       |
+| Student_ID | int         | YES  |     | NULL    |       |
+| Subject_1  | varchar(15) | YES  |     | NULL    |       |
+| Subject_2  | varchar(15) | YES  |     | NULL    |       |
+| Subject_3  | varchar(15) | YES  |     | NULL    |       |
+| Total      | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+	alter table MARKS_TBL
+	add primary key(Marks_ID);
+
+desc MARKS_TBL;
+
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Marks_ID   | int         | NO   | PRI | NULL    |       |
+| Student_ID | int         | YES  |     | NULL    |       |
+| Subject_1  | varchar(15) | YES  |     | NULL    |       |
+| Subject_2  | varchar(15) | YES  |     | NULL    |       |
+| Subject_3  | varchar(15) | YES  |     | NULL    |       |
+| Total      | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+	alter table MARKS_TBL
+	modify column Subject_1 varchar(255) NOT NULL;
+
+desc MARKS_TBL;
+
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| Marks_ID   | int          | NO   | PRI | NULL    |       |
+| Student_ID | int          | YES  |     | NULL    |       |
+| Subject_1  | varchar(255) | NO   |     | NULL    |       |
+| Subject_2  | varchar(15)  | YES  |     | NULL    |       |
+| Subject_3  | varchar(15)  | YES  |     | NULL    |       |
+| Total      | int          | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+
+QUE-4))--
+
+
+
+
+create table PHONEDIARY_TBL(
+	Cust_ID int ,
+	Cust_Name varchar(30) ,
+	Address varchar(50) ,
+	City varchar(15) ,
+	Phoneno_RES bigint ,
+	Phoneno_OFF bigint ,
+	Mobile_NO bigint ,
+	Email_ID varchar(50));
+
+
+desc PHONEDIARY_TBL;
+
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Cust_ID     | int         | YES  |     | NULL    |       |
+| Cust_Name   | varchar(30) | YES  |     | NULL    |       |
+| Address     | varchar(50) | YES  |     | NULL    |       |
+| City        | varchar(15) | YES  |     | NULL    |       |
+| Phoneno_RES | bigint      | YES  |     | NULL    |       |
+| Phoneno_OFF | bigint      | YES  |     | NULL    |       |
+| Mobile_NO   | bigint      | YES  |     | NULL    |       |
+| Email_ID    | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+	alter table PHONEDIARY_TBL
+	add primary key(Cust_ID);
+
+
+desc PHONEDIARY_TBL;
+
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Cust_ID     | int         | NO   | PRI | NULL    |       |
+| Cust_Name   | varchar(30) | YES  |     | NULL    |       |
+| Address     | varchar(50) | YES  |     | NULL    |       |
+| City        | varchar(15) | YES  |     | NULL    |       |
+| Phoneno_RES | bigint      | YES  |     | NULL    |       |
+| Phoneno_OFF | bigint      | YES  |     | NULL    |       |
+| Mobile_NO   | bigint      | YES  |     | NULL    |       |
+| Email_ID    | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+	alter table PHONEDIARY_TBL
+	modify column City varchar(255) NOT NULL;
+	
+
+desc PHONEDIARY_TBL;
+
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Cust_ID     | int          | NO   | PRI | NULL    |       |
+| Cust_Name   | varchar(30)  | YES  |     | NULL    |       |
+| Address     | varchar(50)  | YES  |     | NULL    |       |
+| City        | varchar(255) | NO   |     | NULL    |       |
+| Phoneno_RES | bigint       | YES  |     | NULL    |       |
+| Phoneno_OFF | bigint       | YES  |     | NULL    |       |
+| Mobile_NO   | bigint       | YES  |     | NULL    |       |
+| Email_ID    | varchar(50)  | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+
+QUE-5))--
+
+
+
+create table PLAYER_TBL(
+	Player_ID int ,
+	Player_Name varchar(30) ,
+	Age int ,
+	Height float ,
+	Weight int ,
+	Blood_Group varchar(15) ,
+	No_OF_Matches int ,
+	Centuries int ,
+	Wickets int ,
+	Average_Run int );
+
+
+ desc PLAYER_TBL;
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Player_ID     | int         | YES  |     | NULL    |       |
+| Player_Name   | varchar(30) | YES  |     | NULL    |       |
+| Age           | int         | YES  |     | NULL    |       |
+| Height        | float       | YES  |     | NULL    |       |
+| Weight        | int         | YES  |     | NULL    |       |
+| Blood_Group   | varchar(15) | YES  |     | NULL    |       |
+| No_OF_Matches | int         | YES  |     | NULL    |       |
+| Centuries     | int         | YES  |     | NULL    |       |
+| Wickets       | int         | YES  |     | NULL    |       |
+| Average_Run   | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+	alter table PLAYER_TBL
+	add primary key(Age);
+
+
+desc PLAYER_TBL;
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Player_ID     | int         | YES  |     | NULL    |       |
+| Player_Name   | varchar(30) | YES  |     | NULL    |       |
+| Age           | int         | NO   | PRI | NULL    |       |
+| Height        | float       | YES  |     | NULL    |       |
+| Weight        | int         | YES  |     | NULL    |       |
+| Blood_Group   | varchar(15) | YES  |     | NULL    |       |
+| No_OF_Matches | int         | YES  |     | NULL    |       |
+| Centuries     | int         | YES  |     | NULL    |       |
+| Wickets       | int         | YES  |     | NULL    |       |
+| Average_Run   | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+	alter table PLAYER_TBL
+	modify column Player_ID int NOT NULL;
+
+
+desc PLAYER_TBL;
+
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Player_ID     | int         | NO   |     | NULL    |       |
+| Player_Name   | varchar(30) | YES  |     | NULL    |       |
+| Age           | int         | NO   | PRI | NULL    |       |
+| Height        | float       | YES  |     | NULL    |       |
+| Weight        | int         | YES  |     | NULL    |       |
+| Blood_Group   | varchar(15) | YES  |     | NULL    |       |
+| No_OF_Matches | int         | YES  |     | NULL    |       |
+| Centuries     | int         | YES  |     | NULL    |       |
+| Wickets       | int         | YES  |     | NULL    |       |
+| Average_Run   | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+
+
+

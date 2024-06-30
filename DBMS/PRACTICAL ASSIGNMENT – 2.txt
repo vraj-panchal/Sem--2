@@ -1,0 +1,472 @@
+mysql -u root -p
+
+show databeses;
+
+create database assignment_2;
+
+
+
+
+QUE-1))--
+
+
+
+
+create table Account_Holder( 
+	Acct_no int primary key  , 
+	First_Name varchar(30) ,
+	Last_Name varchar(30) , 
+	DOB date , 
+	Gender varchar(10) , 
+	Acct_Open_Date date ,
+	Acct_BAL int , 
+	Acct_type varchar(20) , 
+	Acct_status varchar(10), 
+	Acct_Cheque_Flag varchar(2) 
+);
+
+
+
+ desc Account_Holder;
+
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Acct_no          | int         | NO   | PRI | NULL    |       |
+| First_Name       | varchar(30) | YES  |     | NULL    |       |
+| Last_Name        | varchar(30) | YES  |     | NULL    |       |
+| DOB              | date        | YES  |     | NULL    |       |
+| Gender           | varchar(10) | YES  |     | NULL    |       |
+| Acct_Open_Date   | date        | YES  |     | NULL    |       |
+| Acct_BAL         | int         | YES  |     | NULL    |       |
+| Acct_type        | varchar(20) | YES  |     | NULL    |       |
+| Acct_status      | varchar(15) | YES  |     | NULL    |       |
+| Acct_Cheque_Flag | varchar(2)  | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+
+QUE-2))--
+
+
+
+create table Branch(
+	B_no int primary key,
+	B_name varchar(30) ,  
+	B_address varchar(50) ,
+	B_city varchar(20) );
+
+
+ desc Branch;
+
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| B_no      | int         | NO   | PRI | NULL    |       |
+| B_name    | varchar(30) | YES  |     | NULL    |       |
+| B_address | varchar(50) | YES  |     | NULL    |       |
+| B_city    | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+QUE-3))--
+
+
+
+create table Transaction(
+	T_no int , 
+	Acct_no int , 
+	B_no int , 
+	Trans_Date date , 
+	Trans_Amt int) ;
+
+
+desc Transaction;
+
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| T_no       | int  | YES  |     | NULL    |       |
+| Acct_no    | int  | YES  |     | NULL    |       |
+| B_no       | int  | YES  |     | NULL    |       |
+| Trans_Date | date | YES  |     | NULL    |       |
+| Trans_Amt  | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+Transaction
+
+
+ 	alter table Transaction
+	add foreign key(Acct_no) references Account_Holder(Acct_no);
+	
+
+	alter table Transaction
+	add foreign key(B_no) references Branch(B_no);
+
+
+
+ desc Transaction;
+
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| T_no       | int  | YES  |     | NULL    |       |
+| Acct_no    | int  | YES  | MUL | NULL    |       |
+| B_no       | int  | YES  | MUL | NULL    |       |
+| Trans_Date | date | YES  |     | NULL    |       |
+| Trans_Amt  | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+Q_1))--
+
+
+insert into Account_Holder(Acct_no, First_Name,Last_Name, DOB, Gender, Acct_Open_Date,Acct_BAL, Acct_type, Acct_status, Acct_Cheque_Flag)
+values(1001,'Vraj','Panchal','2006-01-11','Male','2019-10-24',60000,'Seving','Good','Y'),
+(1002,'Rahul','Dusane','2006-04-14','Male','2024-02-14',45000,'Seving','Activ','Y'),
+(1003,'Utsav','Parmar','2006-05-27','Male','2020-06-25',60000,'Current','Inactiv','Y'),
+(1004,'Jay','Khadge','2005-02-07','Male','2019-12-30',50000,'Current','Activ','N'),
+(1005,'Vats','Patel','2005-11-18','Male','2024-01-22',100000,'Seving','Activ','y'),
+(1006,'Jeemit','Patel','2006-05-25','Male','2022-02-12',109000,'FD','Activ','y'),
+(1007,'Riddhi','Patel','2004-01-19','Female','2023-01-30',20000,'Seving','Inactiv','Y'),
+(1008,'Darsh','Narola','2001-12-06','Male','2017-01-01',20000,'FD','Activ','N'),
+(1009,'Kandarbh','Patel','2002-12-12','Male','2015-12-11',10000,'Current','Activ','N'),
+(1010,'Mahek','Patel','2006-11-02','Female','2023-02-10',32000,'FD','Activ','y');
+
+
+
+ select * from Account_Holder;
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+| Acct_no | First_Name | Last_Name | DOB        | Gender | Acct_Open_Date | Acct_BAL | Acct_type | Acct_status | Acct_Cheque_Flag |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+|    1001 | Vraj       | Panchal   | 2006-01-11 | Male   | 2019-10-24     |    60000 | Seving    | Good        | Y                |
+|    1002 | Rahul      | Dusane    | 2006-04-14 | Male   | 2024-02-14     |    45000 | Seving    | Activ       | Y                |
+|    1003 | Utsav      | Parmar    | 2006-05-27 | Male   | 2020-06-25     |    60000 | Current   | Inactiv     | Y                |
+|    1004 | Jay        | Khadge    | 2005-02-07 | Male   | 2019-12-30     |    50000 | Current   | Activ       | N                |
+|    1005 | Vats       | Patel     | 2005-11-18 | Male   | 2024-01-22     |   100000 | Seving    | Activ       | y                |
+|    1006 | Jeemit     | Patel     | 2006-05-25 | Male   | 2022-12-21     |   109000 | FD        | Activ       | y                |
+|    1007 | Riddhi     | Patel     | 2004-01-19 | Female | 2023-01-30     |    20000 | Seving    | Inactiv     | Y                |
+|    1008 | Darsh      | Narola    | 2001-12-06 | Male   | 2017-01-01     |    20000 | FD        | Activ       | N                |
+|    1009 | Kandarbh   | Patel     | 2002-12-12 | Male   | 2015-12-11     |    20000 | Current   | Activ       | N                |
+|    1010 | Mahek      | Patel     | 2006-11-02 | Female | 2023-02-10     |    32000 | FD        | Activ       | y                |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+10 rows in set (0.00 sec)
+
+
+
+
+Q__2))--
+
+
+
+ select First_Name,DOB from Account_Holder where Acct_type='Seving';
++------------+------------+
+| First_Name | DOB        |
++------------+------------+
+| Vraj       | 2006-01-11 |
+| Rahul      | 2006-04-14 |
+| Vats       | 2005-11-18 |
+| Riddhi     | 2004-01-19 |
++------------+------------+
+4 rows in set (0.00 sec)
+
+
+Q__3))--
+
+
+mysql> select First_Name from Account_Holder where Acct_type='Current' and Acct_BAl=50000;
++------------+
+| First_Name |
++------------+
+| Jay        |
++------------+
+1 row in set (0.00 sec)
+
+
+
+Q__4))--
+
+
+
+mysql> select First_Name from Account_Holder where Acct_type='Seving' and Acct_BAl>50000;
++------------+
+| First_Name |
++------------+
+| Vraj       |
+| Vats       |
++------------+
+2 rows in set (0.00 sec)
+
+
+
+Q__5))--
+
+
+
+
+
+mysql> select First_Name from Account_Holder where Acct_Cheque_Flag='Y';
++------------+
+| First_Name |
++------------+
+| Vraj       |
+| Rahul      |
+| Utsav      |
+| Vats       |
+| Jeemit     |
+| Riddhi     |
+| Mahek      |
++------------+
+7 rows in set (0.00 sec)
+
+
+
+Q__6))--
+
+
+
+
+mysql> select First_Name from Account_Holder where Gender='Female';
++------------+
+| First_Name |
++------------+
+| Riddhi     |
+| Mahek      |
++------------+
+2 rows in set (0.00 sec)
+
+
+
+
+Q__7))--
+
+
+
+
+select * from Account_Holder where Acct_BAl=10000;
+
+
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+| Acct_no | First_Name | Last_Name | DOB        | Gender | Acct_Open_Date | Acct_BAL | Acct_type | Acct_status | Acct_Cheque_Flag |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+|    1008 | Darsh      | Narola    | 2001-12-06 | Male   | 2017-01-01     |    10000 | FD        | Activ       | N                |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+1 row in set (0.00 sec)
+
+
+
+Q__8))--
+
+
+Q__9))--
+
+10
+
+ select * from Account_Holder where Acct_type='Current';
+
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+| Acct_no | First_Name | Last_Name | DOB        | Gender | Acct_Open_Date | Acct_BAL | Acct_type | Acct_status | Acct_Cheque_Flag |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+|    1003 | Utsav      | Parmar    | 2006-05-27 | Male   | 2020-06-25     |    60000 | Current   | Inactiv     | Y                |
+|    1004 | Jay        | Khadge    | 2005-02-07 | Male   | 2019-12-30     |    50000 | Current   | Activ       | N                |
+|    1009 | Kandarbh   | Patel     | 2002-12-12 | Male   | 2015-12-11     |    20000 | Current   | Activ       | N                |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+Q__10))--
+
+
+
+
+
+count(Gender) as Total_Male_Current_Acct from Account_Holder where Gender='Male' and Acct_type='Current';
++-------------------------+
+| Total_Male_Current_Acct |
++-------------------------+
+|                       3 |
++-------------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+Q__11))--
+
+
+
+
+
+mysql> select count(Acct_Cheque_Flag) as Total_Acct_Cheque_Issue from Account_Holder where Acct_Cheque_Flag='N';
++-------------------------+
+| Total_Acct_Cheque_Issue |
++-------------------------+
+|                       3 |
++-------------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+Q__12))--
+
+
+
+
+
+ select *  from Account_Holder where Acct_BAl = (select max(Acct_BAl) from Account_Holder);
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+| Acct_no | First_Name | Last_Name | DOB        | Gender | Acct_Open_Date | Acct_BAL | Acct_type | Acct_status | Acct_Cheque_Flag |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+|    1006 | Jeemit     | Patel     | 2006-05-25 | Male   | 2022-12-21     |   109000 | FD        | Activ       | y                |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+1 row in set (0.01 sec)
+
+
+
+
+Q__13))--
+
+
+
+update Account_Holder set Acct_BAl = Acct_BAl - 1000 where Acct_BAl=60000;
+
+select * from Account_Holder;
+
+
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+| Acct_no | First_Name | Last_Name | DOB        | Gender | Acct_Open_Date | Acct_BAL | Acct_type | Acct_status | Acct_Cheque_Flag |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+|    1001 | Vraj       | Panchal   | 2006-01-11 | Male   | 2019-10-24     |    59000 | Seving    | Good        | Y                |
+|    1002 | Rahul      | Dusane    | 2006-04-14 | Male   | 2024-02-14     |    45000 | Seving    | Activ       | Y                |
+|    1003 | Utsav      | Parmar    | 2006-05-27 | Male   | 2020-06-25     |    59000 | Current   | Inactiv     | Y                |
+|    1004 | Jay        | Khadge    | 2005-02-07 | Male   | 2019-12-30     |    50000 | Current   | Activ       | N                |
+|    1005 | Vats       | Patel     | 2005-11-18 | Male   | 2024-01-22     |   100000 | Seving    | Activ       | y                |
+|    1006 | Jeemit     | Patel     | 2006-05-25 | Male   | 2022-12-21     |   109000 | FD        | Activ       | y                |
+|    1007 | Riddhi     | Patel     | 2004-01-19 | Female | 2023-01-30     |    20000 | Seving    | Inactiv     | Y                |
+|    1008 | Darsh      | Narola    | 2001-12-06 | Male   | 2017-01-01     |    10000 | FD        | Activ       | N                |
+|    1009 | Kandarbh   | Patel     | 2002-12-12 | Male   | 2015-12-11     |    20000 | Current   | Activ       | N                |
+|    1010 | Mahek      | Patel     | 2006-11-02 | Female | 2023-02-10     |    32000 | FD        | Activ       | y                |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+10 rows in set (0.00 sec)
+
+
+
+Q__14))--
+
+
+
+update Account_Holder set Acct_BAl = Acct_BAl + 1000 where  Acct_Cheque_Flag='Y';
+
+
+select * from Account_Holder;
+
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+| Acct_no | First_Name | Last_Name | DOB        | Gender | Acct_Open_Date | Acct_BAL | Acct_type | Acct_status | Acct_Cheque_Flag |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+|    1001 | Vraj       | Panchal   | 2006-01-11 | Male   | 2019-10-24     |    60000 | Seving    | Good        | Y                |
+|    1002 | Rahul      | Dusane    | 2006-04-14 | Male   | 2024-02-14     |    46000 | Seving    | Activ       | Y                |
+|    1003 | Utsav      | Parmar    | 2006-05-27 | Male   | 2020-06-25     |    60000 | Current   | Inactiv     | Y                |
+|    1004 | Jay        | Khadge    | 2005-02-07 | Male   | 2019-12-30     |    50000 | Current   | Activ       | N                |
+|    1005 | Vats       | Patel     | 2005-11-18 | Male   | 2024-01-22     |   101000 | Seving    | Activ       | y                |
+|    1006 | Jeemit     | Patel     | 2006-05-25 | Male   | 2022-12-21     |   110000 | FD        | Activ       | y                |
+|    1007 | Riddhi     | Patel     | 2004-01-19 | Female | 2023-01-30     |    21000 | Seving    | Inactiv     | Y                |
+|    1008 | Darsh      | Narola    | 2001-12-06 | Male   | 2017-01-01     |    10000 | FD        | Activ       | N                |
+|    1009 | Kandarbh   | Patel     | 2002-12-12 | Male   | 2015-12-11     |    20000 | Current   | Activ       | N                |
+|    1010 | Mahek      | Patel     | 2006-11-02 | Female | 2023-02-10     |    33000 | FD        | Activ       | y                |
++---------+------------+-----------+------------+--------+----------------+----------+-----------+-------------+------------------+
+10 rows in set (0.00 sec)
+
+
+
+Q__15))--
+
+
+insert into Branch(B_no,B_name,B_address,B_city) values(1001,'Mumb_BOB','Andheri','Mumbai'),
+(1002,'Star_BOB','Arvalli','Bombay'),
+(1003,'HDFC','Udhna','Surat'),
+(1004,'SBI','BUS_STOP','Baroda'),
+(1005,'BOB','Valsad','Surat'),
+(1006,'AXIS','Goregav','Mumbai'),
+(1007,'YES','Bodeli','Vadodhra'),
+(1008,'BOB','Gam','Saputara'),
+(1009,'ICIC','Vesu','Surat'),
+(1010,'CANARA','Panvel','Delhi');
+
+
+select * from Branch;
++------+----------+-----------+----------+
+| B_no | B_name   | B_address | B_city   |
++------+----------+-----------+----------+
+| 1001 | Mumb_BOB | Andheri   | Mumbai   |
+| 1002 | Star_BOB | Arvalli   | Bombay   |
+| 1003 | HDFC     | Udhna     | Surat    |
+| 1004 | SBI      | BUS_STOP  | Baroda   |
+| 1005 | BOB      | Valsad    | Surat    |
+| 1006 | AXIS     | Goregav   | Mumbai   |
+| 1007 | YES      | Bodeli    | Vadodhra |
+| 1008 | BOB      | Gam       | Saputara |
+| 1009 | ICIC     | Vesu      | Surat    |
+| 1010 | CANARA   | Panvel    | Delhi    |
++------+----------+-----------+----------+
+10 rows in set (0.00 sec)
+
+
+
+
+Q__16))--
+
+
+
+
+ select count(B_no) as Location_IN_Surat from Branch where B_city='Surat';
++-------------------+
+| Location_IN_Surat |
++-------------------+
+|                 3 |
++-------------------+
+1 row in set (0.00 sec)
+
+
+
+Q__18))--
+
+
+
+select First_Name from Account_Holder where Acct_status='Inactiv';
+
++------------+
+| First_Name |
++------------+
+| Utsav      |
+| Riddhi     |
++------------+
+2 rows in set (0.00 sec)
+
+
+Q__20))--
+
+
+select sum(Acct_BAl) as Sum_OF_Current_Acct_BAl from Account_Holder where Acct_type='Current';
+
++-------------------------+
+| Sum_OF_Current_Acct_BAl |
++-------------------------+
+|                  130000 |
++-------------------------+
+1 row in set (0.03 sec)
+
+
+
+
+
+
